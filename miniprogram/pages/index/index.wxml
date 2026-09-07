@@ -1,0 +1,54 @@
+<view class="page">
+  <!-- 顶部问候 + 搜索 -->
+  <view class="header">
+    <view class="greet">
+      <view class="hi">{{greeting}}</view>
+      <view class="sub">厨房小白也能轻松开火 🔥</view>
+    </view>
+    <view class="search-bar" bindtap="onSearch">
+      <text class="icon">🔍</text>
+      <text>搜菜名 / 冰箱里的食材</text>
+    </view>
+  </view>
+
+  <!-- 今天吃什么 -->
+  <view class="today" bindtap="onTodayEat" hover-class="today-hover">
+    <view class="today-left">
+      <text class="today-emoji">🎲</text>
+      <view class="today-text">
+        <view class="today-title">{{rolling ? (rollRecipe.name || '…') : '今天吃什么'}}</view>
+        <view class="today-sub">{{rolling ? '转圈圈中～' : '点我，帮你做决定！'}}</view>
+      </view>
+    </view>
+    <view class="today-btn">✨ 开吃</view>
+  </view>
+
+  <!-- 猜你喜欢 -->
+  <view class="section-title"><text class="t">猜你喜欢 💕</text></view>
+  <view class="grid">
+    <view class="grid-item" wx:for="{{recommend}}" wx:key="id">
+      <recipe-card
+        recipe="{{item}}"
+        favorite="{{favorites.indexOf(item.id) >= 0}}"
+        bind:fav="onFav"
+      />
+    </view>
+  </view>
+</view>
+
+<!-- 结果弹窗 -->
+<view class="mask" wx:if="{{showResult}}" bindtap="onCloseResult">
+  <view class="result-pop" catchtap="noop">
+    <view class="result-title">就决定吃它啦！</view>
+    <view class="result-recipe">
+      <image wx:if="{{resultImageUrl}}" class="result-img" src="{{resultImageUrl}}" mode="aspectFill" />
+      <view wx:else class="result-img result-ph">{{resultRecipe.emoji || '🍽️'}}</view>
+      <view class="result-name">{{resultRecipe.name}}</view>
+      <view class="result-meta">{{resultRecipe.category}} · 难度 {{resultRecipe.difficulty}} · {{resultRecipe.time || '时长未知'}}</view>
+    </view>
+    <view class="result-actions">
+      <button class="btn btn-ghost btn-sm" bindtap="onChange">🔄 换一个</button>
+      <button class="btn btn-primary btn-sm" bindtap="onGoResult">去看看 👀</button>
+    </view>
+  </view>
+</view>

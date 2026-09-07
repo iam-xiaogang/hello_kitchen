@@ -1,0 +1,137 @@
+.head {
+  overflow: hidden;
+}
+.hero {
+  position: relative;
+  height: 360rpx;
+  background: #f0eae2;
+}
+.hero-img {
+  width: 100%;
+  height: 100%;
+}
+.hero-ph {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32rpx;
+  box-sizing: border-box;
+}
+.hero-emoji {
+  font-size: 120rpx;
+  line-height: 1;
+}
+.fav-btn {
+  position: absolute;
+  right: 24rpx;
+  top: 24rpx;
+  width: 72rpx;
+  height: 72rpx;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 36rpx;
+}
+.fav-btn .on {
+  animation: pop 0.35s ease;
+}
+@keyframes pop {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.4); }
+  100% { transform: scale(1); }
+}
+
+.head-info {
+  padding: 28rpx 32rpx 32rpx;
+}
+.name {
+  font-size: 40rpx;
+  font-weight: 800;
+  color: #5c4a3d;
+  line-height: 1.3;
+}
+.tag-row {
+  margin: 12rpx 0;
+}
+
+.desc {
+  margin-top: 20rpx;
+  padding: 28rpx 32rpx;
+  font-size: 26rpx;
+  color: #9a8b7e;
+  line-height: 1.7;
+}
+
+.section {
+  margin-top: 28rpx;
+}
+.section.card {
+  padding: 28rpx 32rpx;
+}
+.section-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24rpx;
+}
+.section-head .t {
+  font-size: 32rpx;
+  font-weight: 700;
+  color: #5c4a3d;
+}
+.hint {
+  font-size: 22rpx;
+  color: #c9bbad;
+}
+.link {
+  font-size: 26rpx;
+  color: #ff7a5c;
+}
+
+.ing-list {
+  margin-bottom: 20rpx;
+}
+
+.step-swiper {
+  height: 560rpx;
+}
+.dots {
+  display: flex;
+  justify-content: center;
+  margin-top: 20rpx;
+}
+.dot {
+  width: 12rpx;
+  height: 12rpx;
+  border-radius: 999rpx;
+  background: #e6d8ca;
+  margin: 0 6rpx;
+  transition: all 0.25s ease;
+}
+.dot.on {
+  width: 32rpx;
+  background: #ff7a5c;
+}
+
+.tip {
+  font-size: 26rpx;
+  color: #9a8b7e;
+  line-height: 1.7;
+  padding: 8rpx 0;
+}
+
+.related {
+  white-space: nowrap;
+}
+.related-inner {
+  display: inline-flex;
+  padding: 4rpx;
+}
+.related-item {
+  width: 250rpx;
+  margin-right: 20rpx;
+}

@@ -1,0 +1,9 @@
+<view class="ci {{checked ? 'done' : ''}}" bindtap="onTap" hover-class="ci-hover">
+  <view class="check {{checked ? 'checked' : ''}}">
+    <text class="tick" wx:if="{{checked}}">✓</text>
+  </view>
+  <view class="info">
+    <text class="label">{{label}}</text>
+    <text class="sub" wx:if="{{sub}}">{{sub}}</text>
+  </view>
+</view>

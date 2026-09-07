@@ -1,0 +1,13 @@
+# 依赖
+node_modules/
+tools/.npm-cache/
+
+# HowToCook 源仓库（需要时重新克隆）
+howtocook/
+
+# 微信开发者工具本地配置
+project.private.config.json
+
+# 系统
+.DS_Store
+*.log

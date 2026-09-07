@@ -1,0 +1,23 @@
+<view class="page">
+  <view class="intro">做饭 / 家务小技巧，按需查阅 📖</view>
+
+  <view class="tip-group" wx:for="{{tipGroups}}" wx:key="key" wx:for-item="group">
+    <view class="tip-group-head">
+      <text class="tip-group-icon">{{group.icon}}</text>
+      <text class="tip-group-name">{{group.name}}</text>
+      <text class="tip-group-count">{{group.count}} 篇</text>
+    </view>
+    <view
+      class="tip-item"
+      wx:for="{{group.items}}"
+      wx:key="id"
+      wx:for-item="tip"
+      data-id="{{tip.id}}"
+      bindtap="onTipTap"
+      hover-class="tip-item-hover"
+    >
+      <text class="tip-title">{{tip.title}}</text>
+      <text class="tip-arrow">›</text>
+    </view>
+  </view>
+</view>

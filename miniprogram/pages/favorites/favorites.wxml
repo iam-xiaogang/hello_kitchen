@@ -1,0 +1,20 @@
+<view class="page">
+  <view class="count-bar" wx:if="{{count}}">
+    <text>共收藏 <text class="num">{{count}}</text> 道菜 ❤️</text>
+  </view>
+
+  <block wx:for="{{groups}}" wx:key="category" wx:for-item="group">
+    <view class="section-title"><text class="t">{{group.category}}</text></view>
+    <view class="grid">
+      <view class="grid-item" wx:for="{{group.list}}" wx:for-item="recipe" wx:key="id">
+        <recipe-card recipe="{{recipe}}" favorite="{{true}}" bind:fav="onFav" />
+      </view>
+    </view>
+  </block>
+
+  <view class="empty" wx:if="{{!count}}">
+    <mascot emoji="👨‍🍳" text="还没有收藏菜谱哦～" size="150" />
+    <view class="sub">看到喜欢的菜，点右上角的小心心 ❤️</view>
+    <button class="btn btn-primary" bindtap="goHome" style="margin-top: 40rpx;">去逛逛 🏠</button>
+  </view>
+</view>

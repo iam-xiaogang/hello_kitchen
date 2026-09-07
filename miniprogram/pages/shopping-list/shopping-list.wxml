@@ -1,0 +1,33 @@
+<view class="page">
+  <view class="progress card" wx:if="{{total}}">
+    <view class="progress-head">
+      <text class="p-title">采购进度 🛒</text>
+      <text class="p-count">{{checkedCount}} / {{total}}</text>
+    </view>
+    <view class="progress-bar">
+      <view class="progress-fill" style="width: {{total ? checkedCount / total * 100 : 0}}%"></view>
+    </view>
+  </view>
+
+  <view class="list" wx:if="{{total}}">
+    <checklist-item
+      wx:for="{{list}}"
+      wx:key="name"
+      label="{{item.name}}"
+      sub="{{item.amount}}"
+      checked="{{item.checked}}"
+      data-name="{{item.name}}"
+      bind:toggle="onToggle"
+    />
+  </view>
+
+  <view class="empty" wx:if="{{!total}}">
+    <mascot emoji="🛒" text="购物清单空空的" size="140" />
+    <view class="sub">在菜谱详情点「加入购物清单」，或从收藏一键生成</view>
+  </view>
+
+  <view class="actions" wx:if="{{total}}">
+    <button class="btn btn-ghost" bindtap="onClear">🗑 清空清单</button>
+  </view>
+  <button class="btn btn-soft" bindtap="onGenerate">✨ 从收藏菜谱生成清单</button>
+</view>

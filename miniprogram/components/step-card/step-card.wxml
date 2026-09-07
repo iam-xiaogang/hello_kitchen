@@ -1,0 +1,15 @@
+<view class="step">
+  <view class="head">
+    <view class="icon-wrap">
+      <text class="icon">{{emoji}}</text>
+    </view>
+    <view class="num">
+      <text class="cur">{{index}}</text>
+      <text class="total" wx:if="{{total}}">/{{total}}</text>
+    </view>
+  </view>
+  <view class="group" wx:if="{{step.group}}">
+    <text class="group-tag">{{step.group}}</text>
+  </view>
+  <text class="text">{{step.text}}</text>
+</view>

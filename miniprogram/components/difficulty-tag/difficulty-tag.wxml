@@ -1,0 +1,4 @@
+<view class="diff diff-{{size}}">
+  <text class="pan {{index < level ? 'on' : 'off'}}" wx:for="{{pans}}" wx:key="*this">🍳</text>
+  <text class="label" wx:if="{{showLabel}}">{{label}}</text>
+</view>

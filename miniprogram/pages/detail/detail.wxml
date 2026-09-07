@@ -1,0 +1,89 @@
+<view class="page" wx:if="{{recipe}}">
+  <!-- 头部：封面图 + 信息 -->
+  <view class="head card">
+    <view class="hero" style="background: {{recipe.light || '#F0EAE2'}}">
+      <image
+        wx:if="{{imageUrl}}"
+        class="hero-img"
+        src="{{imageUrl}}"
+        mode="aspectFill"
+        binderror="onImgError"
+      />
+      <view wx:else class="hero-ph"><text class="hero-emoji">{{recipe.emoji || '🍽️'}}</text></view>
+      <view class="fav-btn" bindtap="onToggleFav">
+        <text class="{{favorite ? 'on' : ''}}">{{favorite ? '❤️' : '🤍'}}</text>
+      </view>
+    </view>
+    <view class="head-info">
+      <view class="name">{{recipe.name}}</view>
+      <view class="tag-row">
+        <text class="tag">{{recipe.category}}</text>
+        <text class="tag tag-yellow" wx:if="{{prettyTime}}">⏱ {{prettyTime}}</text>
+        <text class="tag tag-green" wx:if="{{recipe.calories}}">🔥 {{recipe.calories}}</text>
+      </view>
+      <difficulty-tag level="{{recipe.difficulty}}" showLabel size="lg" />
+    </view>
+  </view>
+
+  <!-- 简介 -->
+  <view class="desc card" wx:if="{{recipe.description}}">{{recipe.description}}</view>
+
+  <!-- 食材清单 -->
+  <view class="section card">
+    <view class="section-head">
+      <text class="t">食材清单 🧺</text>
+      <text class="link" bindtap="onCheckAll">{{allChecked ? '取消全选' : '全选'}}</text>
+    </view>
+    <view class="ing-list">
+      <checklist-item
+        wx:for="{{ingredients}}"
+        wx:key="name"
+        label="{{item.name}}"
+        sub="{{item.amount}}"
+        checked="{{item.checked}}"
+        data-index="{{index}}"
+        bind:toggle="onIngToggle"
+      />
+    </view>
+    <button class="btn btn-primary" bindtap="onAddShopping">🛒 加入购物清单</button>
+  </view>
+
+  <!-- 步骤（故事模式） -->
+  <view class="section">
+    <view class="section-head">
+      <text class="t">做法步骤 👨‍🍳</text>
+      <text class="hint">{{currentStep + 1}} / {{steps.length}}</text>
+    </view>
+    <swiper
+      class="step-swiper"
+      current="{{currentStep}}"
+      bindchange="onStepChange"
+      indicator-dots="{{false}}"
+    >
+      <swiper-item wx:for="{{steps}}" wx:key="index">
+        <step-card index="{{index + 1}}" total="{{steps.length}}" step="{{item}}" />
+      </swiper-item>
+    </swiper>
+    <view class="dots">
+      <view class="dot {{currentStep === index ? 'on' : ''}}" wx:for="{{steps}}" wx:key="index"></view>
+    </view>
+  </view>
+
+  <!-- 小贴士 -->
+  <view class="section card" wx:if="{{recipe.tips.length}}">
+    <view class="section-head"><text class="t">小贴士 💡</text></view>
+    <view class="tip" wx:for="{{recipe.tips}}" wx:key="*this">· {{item}}</view>
+  </view>
+
+  <!-- 相关推荐 -->
+  <view class="section" wx:if="{{related.length}}">
+    <view class="section-head"><text class="t">还看看这些 🍴</text></view>
+    <scroll-view scroll-x class="related" enhanced show-scrollbar="{{false}}">
+      <view class="related-inner">
+        <view class="related-item" wx:for="{{related}}" wx:key="id">
+          <recipe-card recipe="{{item}}" showFavorite="{{false}}" />
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+</view>

@@ -1,0 +1,68 @@
+<view class="page">
+  <!-- 用户卡片 -->
+  <view class="user card">
+    <view class="avatar">👨‍🍳</view>
+    <view class="u-info">
+      <view class="u-name">程序员厨房</view>
+      <view class="u-sub">代码与美食，都不可辜负</view>
+    </view>
+  </view>
+
+  <!-- 口味偏好 -->
+  <view class="section-title"><text class="t">口味偏好 🌶️</text></view>
+  <view class="card prefs">
+    <view class="pref-row">
+      <text class="pref-label">辣度</text>
+      <view class="spice-row">
+        <view
+          class="spice {{prefs.spice === o.v ? 'on' : ''}}"
+          wx:for="{{spiceOptions}}"
+          wx:key="v"
+          data-v="{{o.v}}"
+          bindtap="onSpice"
+        >{{o.label}}</view>
+      </view>
+    </view>
+    <view class="pref-row">
+      <text class="pref-label">素食优先 🥬</text>
+      <switch checked="{{prefs.vegetarian}}" color="#FF7A5C" data-key="vegetarian" bindchange="onSwitch" />
+    </view>
+    <view class="pref-row">
+      <text class="pref-label">快手优先 ⚡</text>
+      <switch checked="{{prefs.quick}}" color="#FF7A5C" data-key="quick" bindchange="onSwitch" />
+    </view>
+    <view class="pref-tip">偏好会用于优化首页「猜你喜欢」推荐</view>
+  </view>
+
+  <!-- 浏览历史 -->
+  <view class="section-title" wx:if="{{history.length}}">
+    <text class="t">最近看过 🕘</text>
+    <text class="more" bindtap="onClearHistory">清空</text>
+  </view>
+  <view class="history" wx:if="{{history.length}}">
+    <view class="h-item" wx:for="{{history}}" wx:key="id">
+      <recipe-card recipe="{{item}}" type="row" showFavorite="{{false}}" />
+    </view>
+  </view>
+
+  <!-- 关于 -->
+  <view class="section-title"><text class="t">关于</text></view>
+  <view class="card about" bindtap="onAbout">
+    <view class="about-row">
+      <text>📖 菜谱数据</text>
+      <text class="val">HowToCook · {{totalRecipes}} 道</text>
+    </view>
+    <view class="about-row">
+      <text>🗄️ 数据源</text>
+      <text class="val">{{dataSource}}</text>
+    </view>
+    <view class="about-row">
+      <text>📱 版本</text>
+      <text class="val">1.0.0</text>
+    </view>
+    <view class="about-row">
+      <text>ℹ️ 关于</text>
+      <text class="val">查看说明 ›</text>
+    </view>
+  </view>
+</view>

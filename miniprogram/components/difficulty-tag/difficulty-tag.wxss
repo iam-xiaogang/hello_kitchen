@@ -1,0 +1,23 @@
+.diff {
+  display: inline-flex;
+  align-items: center;
+  line-height: 1;
+}
+.pan {
+  margin-right: 3rpx;
+  transition: opacity 0.2s ease;
+}
+.diff-sm .pan {
+  font-size: 20rpx;
+}
+.diff-lg .pan {
+  font-size: 36rpx;
+}
+.pan.off {
+  opacity: 0.22;
+}
+.label {
+  margin-left: 12rpx;
+  font-size: 24rpx;
+  color: #9a8b7e;
+}

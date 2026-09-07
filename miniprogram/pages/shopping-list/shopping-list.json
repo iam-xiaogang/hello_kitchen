@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "购物清单",
+  "usingComponents": {
+    "checklist-item": "../../components/checklist-item/checklist-item",
+    "mascot": "../../components/mascot/mascot"
+  }
+}

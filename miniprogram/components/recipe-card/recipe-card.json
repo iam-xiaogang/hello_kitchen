@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "difficulty-tag": "../difficulty-tag/difficulty-tag"
+  }
+}

@@ -1,0 +1,46 @@
+<view class="page">
+  <view class="search-box">
+    <view class="input-wrap">
+      <text class="s-icon">🔍</text>
+      <input
+        class="search-input"
+        value="{{keyword}}"
+        bindinput="onInput"
+        bindconfirm="onSearch"
+        placeholder="搜菜名 / 食材"
+        confirm-type="search"
+        focus
+      />
+      <view class="clear" wx:if="{{keyword}}" bindtap="onClear">✕</view>
+    </view>
+    <button class="search-btn" bindtap="onSearch">搜索</button>
+  </view>
+
+  <block wx:if="{{!searched}}">
+    <view class="section-title" wx:if="{{history.length}}">
+      <text class="t">最近搜索 🕘</text>
+      <text class="more" bindtap="clearHistory">清空</text>
+    </view>
+    <view class="tags" wx:if="{{history.length}}">
+      <view class="tag" wx:for="{{history}}" wx:key="*this" data-kw="{{item}}" bindtap="onTag">{{item}}</view>
+    </view>
+
+    <view class="section-title"><text class="t">冰箱里有什么？🧊</text></view>
+    <view class="fridge-tip">点食材名，反查能用它做的菜</view>
+    <view class="tags">
+      <view class="tag tag-green" wx:for="{{fridgeWords}}" wx:key="*this" data-kw="{{item}}" bindtap="onTag">{{item}}</view>
+    </view>
+  </block>
+
+  <block wx:else>
+    <view class="count" wx:if="{{results.length}}">找到 {{results.length}} 道菜 🎉</view>
+    <view class="result-list" wx:if="{{results.length}}">
+      <view class="result-item" wx:for="{{results}}" wx:key="id">
+        <recipe-card recipe="{{item}}" type="row" showFavorite="{{false}}" />
+      </view>
+    </view>
+    <view class="empty" wx:if="{{!results.length}}">
+      <mascot emoji="🤔" text="没找到这道菜，换个词试试？" size="140" />
+    </view>
+  </block>
+</view>

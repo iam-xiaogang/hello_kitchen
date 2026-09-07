@@ -1,0 +1,28 @@
+<view class="page" wx:if="{{tip}}">
+  <view class="head card">
+    <view class="head-title">{{tip.title}}</view>
+    <view class="head-group">{{tip.groupName}}</view>
+  </view>
+
+  <view class="content card">
+    <block wx:for="{{tip.content}}" wx:key="index" wx:for-item="block">
+      <view class="h2" wx:if="{{block.type === 'h2'}}">{{block.text}}</view>
+      <view class="h3" wx:elif="{{block.type === 'h3'}}">{{block.text}}</view>
+      <view class="h4" wx:elif="{{block.type === 'h4'}}">{{block.text}}</view>
+      <view class="p" wx:elif="{{block.type === 'p'}}">{{block.text}}</view>
+      <view class="li" wx:elif="{{block.type === 'li'}}">
+        <text class="dot">·</text>
+        <text class="li-text">{{block.text}}</text>
+      </view>
+      <view class="quote" wx:elif="{{block.type === 'quote'}}">{{block.text}}</view>
+      <view class="table" wx:elif="{{block.type === 'table'}}">
+        <view class="tr th">
+          <text class="td" wx:for="{{block.header}}" wx:for-item="h" wx:key="index">{{h}}</text>
+        </view>
+        <view class="tr" wx:for="{{block.rows}}" wx:for-item="row" wx:key="index">
+          <text class="td" wx:for="{{row}}" wx:for-item="cell" wx:key="index">{{cell}}</text>
+        </view>
+      </view>
+    </block>
+  </view>
+</view>

@@ -1,0 +1,8 @@
+<view class="mascot" style="width: {{size}}rpx;">
+  <view class="face" style="width: {{size}}rpx; height: {{size}}rpx;">
+    <text class="emoji" style="font-size: {{size * 0.58}}rpx;">{{emoji}}</text>
+  </view>
+  <view class="bubble" wx:if="{{text}}">
+    <text>{{text}}</text>
+  </view>
+</view>

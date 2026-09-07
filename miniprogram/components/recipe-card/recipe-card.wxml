@@ -1,0 +1,26 @@
+<view class="rc rc-{{type}}" bindtap="onTap" hover-class="rc-hover">
+  <view class="cover" style="background: {{recipe.light || '#F0EAE2'}}">
+    <image
+      wx:if="{{imageUrl}}"
+      class="cover-img"
+      src="{{imageUrl}}"
+      mode="aspectFill"
+      lazy-load="{{true}}"
+      binderror="onImgError"
+    />
+    <view wx:else class="cover-ph">
+      <text class="ph-emoji">{{recipe.emoji || '🍽️'}}</text>
+    </view>
+    <view class="cat">{{recipe.category}}</view>
+  </view>
+  <view class="body">
+    <view class="name">{{recipe.name}}</view>
+    <view class="meta">
+      <difficulty-tag level="{{recipe.difficulty || 1}}" />
+      <text class="time" wx:if="{{recipe.time}}">⏱{{recipe.time}}</text>
+    </view>
+  </view>
+  <view class="fav" wx:if="{{showFavorite}}" catchtap="onFav">
+    <text class="heart {{favorite ? 'on' : ''}}">{{favorite ? '❤️' : '🤍'}}</text>
+  </view>
+</view>

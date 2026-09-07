@@ -1,0 +1,39 @@
+.mascot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.face {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: bounce 2.4s ease-in-out infinite;
+}
+.emoji {
+  line-height: 1;
+}
+.bubble {
+  margin-top: 20rpx;
+  background: #fff;
+  border-radius: 20rpx;
+  box-shadow: 0 6rpx 20rpx rgba(92, 74, 61, 0.08);
+  padding: 16rpx 28rpx;
+  font-size: 26rpx;
+  color: #5c4a3d;
+  position: relative;
+  max-width: 420rpx;
+}
+.bubble::before {
+  content: '';
+  position: absolute;
+  top: -12rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  border-left: 12rpx solid transparent;
+  border-right: 12rpx solid transparent;
+  border-bottom: 12rpx solid #fff;
+}
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10rpx); }
+}

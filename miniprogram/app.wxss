@@ -1,0 +1,171 @@
+/**
+ * 程序员厨房 · 设计系统
+ * 奶油色系 + 高饱和点缀色
+ */
+page {
+  /* ---- 色彩体系 ---- */
+  --bg: #FFF9F0;            /* 奶油白 主背景 */
+  --bg-card: #FFFFFF;       /* 卡片白 */
+  --bg-soft: #FFF3E6;       /* 浅奶油块 */
+  --primary: #FFB3A7;       /* 蜜桃粉 */
+  --primary-deep: #FF9A8B;
+  --accent: #FF7A5C;        /* 番茄橘 CTA */
+  --accent-deep: #F56543;
+  --accent-soft: #FFD166;   /* 黄油黄 */
+  --success: #A8D8B9;       /* 薄荷绿 */
+  --success-deep: #63B889;
+  --info: #8EC5E8;          /* 天空蓝 */
+  --purple: #B9A8E8;        /* 香芋紫 */
+  --danger: #FF6B6B;
+
+  /* ---- 文字 ---- */
+  --text: #5C4A3D;          /* 深棕 正文 */
+  --text-2: #9A8B7E;        /* 次级棕 */
+  --text-3: #C9BBAD;        /* 占位 */
+
+  /* ---- 线条 / 圆角 / 阴影 ---- */
+  --border: #F3E8DC;
+  --radius-lg: 24rpx;
+  --radius-md: 16rpx;
+  --radius-sm: 12rpx;
+  --radius-pill: 999rpx;
+  --shadow-sm: 0 4rpx 16rpx rgba(255, 122, 92, 0.06);
+  --shadow-md: 0 8rpx 28rpx rgba(255, 122, 92, 0.10);
+  --shadow-lg: 0 16rpx 48rpx rgba(92, 74, 61, 0.12);
+
+  background: var(--bg);
+  color: var(--text);
+  font-size: 28rpx;
+  line-height: 1.6;
+  font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Helvetica Neue',
+    'Microsoft YaHei', sans-serif;
+}
+
+/* ---------- 通用卡片 ---------- */
+.card {
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+}
+
+/* ---------- 按钮 ---------- */
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: var(--radius-pill);
+  font-size: 30rpx;
+  font-weight: 600;
+  line-height: 1;
+  padding: 0 48rpx;
+  height: 88rpx;
+}
+.btn::after { border: none; }
+
+.btn-primary {
+  background: linear-gradient(135deg, #FF8E7B 0%, #FF7A5C 100%);
+  color: #fff;
+  box-shadow: 0 8rpx 20rpx rgba(255, 122, 92, 0.35);
+}
+.btn-primary:active { transform: scale(0.97); }
+
+.btn-soft {
+  background: #FFE8E0;
+  color: var(--accent);
+}
+.btn-soft:active { transform: scale(0.97); }
+
+.btn-ghost {
+  background: transparent;
+  border: 2rpx solid var(--border);
+  color: var(--text-2);
+}
+.btn-ghost:active { transform: scale(0.97); }
+
+.btn-sm {
+  height: 60rpx;
+  font-size: 26rpx;
+  padding: 0 32rpx;
+}
+
+/* ---------- 标签 ---------- */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 4rpx 18rpx;
+  border-radius: var(--radius-pill);
+  font-size: 22rpx;
+  line-height: 1.5;
+  background: #FFF0E6;
+  color: var(--accent);
+  margin-right: 12rpx;
+  margin-bottom: 12rpx;
+}
+.tag-green { background: #EAF6EE; color: var(--success-deep); }
+.tag-blue { background: #EAF4FB; color: #4A90C2; }
+.tag-purple { background: #F0ECFB; color: #8B72D1; }
+.tag-yellow { background: #FFF5D6; color: #C98E0A; }
+
+/* ---------- 区块标题 ---------- */
+.section-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 32rpx 8rpx 20rpx;
+}
+.section-title .t {
+  font-size: 34rpx;
+  font-weight: 700;
+  color: var(--text);
+}
+.section-title .more {
+  font-size: 24rpx;
+  color: var(--text-3);
+}
+
+/* ---------- 空状态 ---------- */
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 120rpx 60rpx;
+}
+.empty .emoji { font-size: 120rpx; margin-bottom: 24rpx; }
+.empty .txt { font-size: 28rpx; color: var(--text-2); }
+.empty .sub { font-size: 24rpx; color: var(--text-3); margin-top: 8rpx; }
+
+/* ---------- 通用布局 ---------- */
+.page {
+  padding: 24rpx 32rpx;
+  padding-bottom: calc(160rpx + env(safe-area-inset-bottom));
+}
+.row { display: flex; align-items: center; }
+.col { display: flex; flex-direction: column; }
+.flex1 { flex: 1; }
+.ellipsis { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.ellipsis-2 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+
+/* ---------- 无障碍：去掉 button 默认边框 ---------- */
+button { background: transparent; }
+button::after { border: none; }
+
+/* ---------- 吸顶搜索条 ---------- */
+.search-bar {
+  display: flex;
+  align-items: center;
+  height: 72rpx;
+  background: #fff;
+  border-radius: var(--radius-pill);
+  padding: 0 28rpx;
+  box-shadow: var(--shadow-sm);
+  color: var(--text-3);
+  font-size: 26rpx;
+}
+.search-bar .icon { margin-right: 12rpx; }

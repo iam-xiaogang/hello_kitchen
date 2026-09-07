@@ -1,0 +1,59 @@
+.step {
+  height: 100%;
+  box-sizing: border-box;
+  background: #fff;
+  border-radius: 32rpx;
+  padding: 48rpx 44rpx;
+  box-shadow: 0 12rpx 40rpx rgba(92, 74, 61, 0.08);
+  display: flex;
+  flex-direction: column;
+}
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.icon-wrap {
+  width: 96rpx;
+  height: 96rpx;
+  border-radius: 28rpx;
+  background: #fff3e6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.icon {
+  font-size: 52rpx;
+}
+.num {
+  display: flex;
+  align-items: baseline;
+}
+.num .cur {
+  font-size: 48rpx;
+  font-weight: 800;
+  color: #ff7a5c;
+}
+.num .total {
+  font-size: 26rpx;
+  color: #c9bbad;
+  margin-left: 6rpx;
+}
+.group {
+  margin-top: 24rpx;
+}
+.group-tag {
+  display: inline-block;
+  background: #f0ecfb;
+  color: #8b72d1;
+  font-size: 22rpx;
+  padding: 6rpx 20rpx;
+  border-radius: 999rpx;
+}
+.text {
+  margin-top: 24rpx;
+  font-size: 32rpx;
+  line-height: 1.8;
+  color: #5c4a3d;
+  word-break: break-all;
+}

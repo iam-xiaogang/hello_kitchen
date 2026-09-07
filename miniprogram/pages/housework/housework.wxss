@@ -1,0 +1,50 @@
+.intro {
+  font-size: 24rpx;
+  color: #c9bbad;
+  padding: 8rpx 8rpx 0;
+  margin-bottom: 16rpx;
+}
+.tip-group {
+  margin-bottom: 28rpx;
+}
+.tip-group-head {
+  display: flex;
+  align-items: center;
+  margin: 8rpx 8rpx 14rpx;
+}
+.tip-group-icon {
+  margin-right: 8rpx;
+  font-size: 28rpx;
+}
+.tip-group-name {
+  font-size: 30rpx;
+  font-weight: 700;
+  color: #5c4a3d;
+}
+.tip-group-count {
+  margin-left: 12rpx;
+  font-size: 22rpx;
+  color: #c9bbad;
+}
+.tip-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 26rpx 28rpx;
+  margin-bottom: 14rpx;
+  box-shadow: 0 4rpx 14rpx rgba(92, 74, 61, 0.06);
+}
+.tip-item-hover {
+  background: #fff7f3;
+}
+.tip-title {
+  font-size: 28rpx;
+  color: #5c4a3d;
+  font-weight: 500;
+}
+.tip-arrow {
+  font-size: 32rpx;
+  color: #c9bbad;
+}

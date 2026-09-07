@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "菜谱详情",
+  "usingComponents": {
+    "difficulty-tag": "../../components/difficulty-tag/difficulty-tag",
+    "checklist-item": "../../components/checklist-item/checklist-item",
+    "step-card": "../../components/step-card/step-card",
+    "recipe-card": "../../components/recipe-card/recipe-card"
+  }
+}

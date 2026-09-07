@@ -1,0 +1,13 @@
+{
+  "name": "kitchen-xg-tools",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "HowToCook markdown → 结构化 JSON 构建脚本",
+  "scripts": {
+    "parse": "node parse.mjs"
+  },
+  "dependencies": {
+    "pinyin-pro": "^3.25.0"
+  }
+}
