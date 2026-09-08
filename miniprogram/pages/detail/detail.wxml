@@ -1,4 +1,10 @@
-<view class="page" wx:if="{{recipe}}">
+<loading-state wx:if="{{loading}}" text="菜谱正在出锅…" fullscreen />
+<view class="page error-page" wx:elif="{{error}}">
+  <view class="error-emoji">🥺</view>
+  <view class="error-text">{{error}}</view>
+  <button class="btn btn-primary" bindtap="onRetry">重新加载</button>
+</view>
+<view class="page" wx:elif="{{recipe}}">
   <!-- 头部：封面图 + 信息 -->
   <view class="head card">
     <view class="hero" style="background: {{recipe.light || '#F0EAE2'}}">

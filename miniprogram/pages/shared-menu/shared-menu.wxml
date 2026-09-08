@@ -1,5 +1,5 @@
 <view class="page">
-  <view class="loading" wx:if="{{loading}}">菜单端上来啦…</view>
+  <loading-state wx:if="{{loading}}" text="菜单正在端上来…" fullscreen />
 
   <block wx:elif="{{menu}}">
     <view class="share-head card">

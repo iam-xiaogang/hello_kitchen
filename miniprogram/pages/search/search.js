@@ -8,6 +8,7 @@ Page({
     results: [],
     searched: false,
     history: [],
+    searching: false,
     fridgeWords: ['土豆', '番茄', '鸡蛋', '鸡翅', '豆腐', '牛肉', '虾', '白菜', '黄瓜', '面条'],
   },
 
@@ -22,10 +23,16 @@ Page({
   async doSearch(kw) {
     const keyword = String(kw !== undefined ? kw : this.data.keyword).trim();
     if (!keyword) return;
-    this.setData({ keyword, searched: true });
-    const results = await dataService.search(keyword);
-    this.setData({ results });
-    this.saveHistory(keyword);
+    this.setData({ keyword, searched: true, searching: true, results: [] });
+    try {
+      const results = await dataService.search(keyword);
+      this.setData({ results });
+      this.saveHistory(keyword);
+    } catch (e) {
+      wx.showToast({ title: e.message || '搜索失败，请重试', icon: 'none' });
+    } finally {
+      this.setData({ searching: false });
+    }
   },
 
   onSearch() {
@@ -37,7 +44,7 @@ Page({
   },
 
   onClear() {
-    this.setData({ keyword: '', results: [], searched: false });
+    this.setData({ keyword: '', results: [], searched: false, searching: false });
   },
 
   saveHistory(kw) {

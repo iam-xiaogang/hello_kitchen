@@ -1,0 +1,12 @@
+<view class="loading-state {{fullscreen ? 'fullscreen' : ''}}">
+  <view class="cooking">
+    <view class="steam steam-a"></view>
+    <view class="steam steam-b"></view>
+    <view class="pot">
+      <view class="pot-lid"></view>
+      <view class="pot-body">🍲</view>
+    </view>
+  </view>
+  <view class="loading-text">{{text}}</view>
+  <view class="loading-dots"><text></text><text></text><text></text></view>
+</view>

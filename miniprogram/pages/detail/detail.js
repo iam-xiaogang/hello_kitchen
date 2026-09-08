@@ -4,6 +4,8 @@ const store = require('../../utils/store');
 
 Page({
   data: {
+    loading: true,
+    error: '',
     id: '',
     recipe: null,
     favorite: false,
@@ -21,7 +23,8 @@ Page({
     const id = options.id || '';
     this.setData({ id });
     if (id) store.addHistory(id);
-    this.init(id);
+    if (id) this.init(id);
+    else this.setData({ loading: false, error: '菜谱链接不完整' });
   },
 
   onShow() {
@@ -29,24 +32,28 @@ Page({
   },
 
   async init(id) {
-    const recipe = await dataService.getRecipe(id);
-    if (!recipe) {
-      wx.showToast({ title: '菜谱不存在', icon: 'none' });
-      return;
+    this.setData({ loading: true, error: '' });
+    try {
+      const recipe = await dataService.getRecipe(id);
+      if (!recipe) throw new Error('菜谱不存在');
+      const ingredients = (recipe.ingredients || []).map((i) => ({ ...i, checked: false }));
+      const related = await dataService.getRelated(id, recipe.categoryKey, 8);
+      this.setData({
+        recipe,
+        prettyTime: util.prettyTime(recipe.time),
+        imageUrl: util.resolveImage(recipe.image),
+        ingredients,
+        steps: recipe.steps || [],
+        favorite: store.isFavorite(id),
+        inMenu: store.isInMenu(id),
+        related,
+      });
+      wx.setNavigationBarTitle({ title: recipe.name });
+    } catch (e) {
+      this.setData({ error: e.message || '菜谱加载失败' });
+    } finally {
+      this.setData({ loading: false });
     }
-    const ingredients = (recipe.ingredients || []).map((i) => ({ ...i, checked: false }));
-    const related = await dataService.getRelated(id, recipe.categoryKey, 8);
-    this.setData({
-      recipe,
-      prettyTime: util.prettyTime(recipe.time),
-      imageUrl: util.resolveImage(recipe.image),
-      ingredients,
-      steps: recipe.steps || [],
-      favorite: store.isFavorite(id),
-      inMenu: store.isInMenu(id),
-      related,
-    });
-    wx.setNavigationBarTitle({ title: recipe.name });
   },
 
   onIngToggle(e) {
@@ -90,5 +97,9 @@ Page({
 
   onImgError() {
     this.setData({ imageUrl: '' });
+  },
+
+  onRetry() {
+    if (this.data.id) this.init(this.data.id);
   },
 });

@@ -18,6 +18,9 @@
     "backgroundColor": "#FFF9F0",
     "backgroundTextStyle": "light"
   },
+  "usingComponents": {
+    "loading-state": "/components/loading-state/loading-state"
+  },
   "tabBar": {
     "custom": true,
     "color": "#9A8B7E",

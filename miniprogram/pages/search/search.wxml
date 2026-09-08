@@ -33,13 +33,14 @@
   </block>
 
   <block wx:else>
-    <view class="count" wx:if="{{results.length}}">找到 {{results.length}} 道菜 🎉</view>
-    <view class="result-list" wx:if="{{results.length}}">
+    <loading-state wx:if="{{searching}}" text="正在翻菜谱…" />
+    <view class="count" wx:elif="{{results.length}}">找到 {{results.length}} 道菜 🎉</view>
+    <view class="result-list" wx:if="{{!searching && results.length}}">
       <view class="result-item" wx:for="{{results}}" wx:key="id">
         <recipe-card recipe="{{item}}" type="row" showFavorite="{{false}}" />
       </view>
     </view>
-    <view class="empty" wx:if="{{!results.length}}">
+    <view class="empty" wx:if="{{!searching && !results.length}}">
       <mascot emoji="🤔" text="没找到这道菜，换个词试试？" size="140" />
     </view>
   </block>
