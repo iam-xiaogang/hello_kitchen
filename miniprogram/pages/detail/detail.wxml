@@ -22,6 +22,12 @@
         <text class="tag tag-green" wx:if="{{recipe.calories}}">🔥 {{recipe.calories}}</text>
       </view>
       <difficulty-tag level="{{recipe.difficulty}}" showLabel size="lg" />
+      <view class="menu-actions">
+        <button class="btn {{inMenu ? 'btn-soft' : 'btn-primary'}} btn-sm" bindtap="onToggleMenu">
+          {{inMenu ? '✓ 已加入点菜篮' : '🍽️ 加入点菜篮'}}
+        </button>
+        <button class="btn btn-ghost btn-sm" bindtap="onOpenMenu">查看菜单</button>
+      </view>
     </view>
   </view>
 

@@ -57,6 +57,10 @@ Page({
     wx.navigateTo({ url: '/pages/search/search' });
   },
 
+  onOpenMenu() {
+    wx.navigateTo({ url: '/pages/menu-builder/menu-builder' });
+  },
+
   /* ---------- 今天吃什么 ---------- */
   onTodayEat() {
     if (this.data.rolling) return;

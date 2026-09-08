@@ -1,0 +1,9 @@
+.loading { padding: 180rpx 0; text-align: center; color: #9a8b7e; }
+.share-head { padding: 42rpx 28rpx; text-align: center; }
+.love { font-size: 70rpx; }
+.title { margin-top: 12rpx; font-size: 40rpx; font-weight: 700; }
+.subtitle { margin-top: 10rpx; color: #9a8b7e; font-size: 25rpx; }
+.menu-list { margin-top: 28rpx; }
+.menu-item { margin-bottom: 18rpx; }
+.home-btn { margin-top: 34rpx; }
+.empty .btn { margin-top: 32rpx; }

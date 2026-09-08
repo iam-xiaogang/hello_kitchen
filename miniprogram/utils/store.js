@@ -7,6 +7,7 @@ const KEY_SHOPPING = 'kxg_shopping_list';   // 购物清单
 const KEY_HISTORY = 'kxg_history';          // 浏览历史 id 数组
 const KEY_PREFS = 'kxg_prefs';              // 口味偏好
 const KEY_SERVINGS = 'kxg_servings';        // 上次选择的份量（按菜谱）
+const KEY_MENU = 'kxg_menu_draft';           // 待分享菜单中的菜谱 id
 
 function read(key, fallback) {
   try {
@@ -31,6 +32,7 @@ const store = {
     if (read(KEY_FAVORITES, null) === null) write(KEY_FAVORITES, []);
     if (read(KEY_SHOPPING, null) === null) write(KEY_SHOPPING, []);
     if (read(KEY_HISTORY, null) === null) write(KEY_HISTORY, []);
+    if (read(KEY_MENU, null) === null) write(KEY_MENU, []);
     if (read(KEY_PREFS, null) === null) {
       write(KEY_PREFS, { spice: 2, vegetarian: false, quick: false, dislikes: [] });
     }
@@ -112,6 +114,30 @@ const store = {
     const map = read(KEY_SERVINGS, {});
     map[recipeId] = servings;
     write(KEY_SERVINGS, map);
+  },
+
+  /* ---------- 点菜篮 ---------- */
+  getMenuDraft() {
+    return read(KEY_MENU, []);
+  },
+  isInMenu(id) {
+    return this.getMenuDraft().includes(id);
+  },
+  toggleMenuItem(id) {
+    const list = this.getMenuDraft();
+    const idx = list.indexOf(id);
+    if (idx >= 0) list.splice(idx, 1);
+    else list.push(id);
+    write(KEY_MENU, list);
+    return idx < 0;
+  },
+  removeMenuItem(id) {
+    const list = this.getMenuDraft().filter((x) => x !== id);
+    write(KEY_MENU, list);
+    return list;
+  },
+  clearMenuDraft() {
+    write(KEY_MENU, []);
   },
 };
 

@@ -1,0 +1,12 @@
+.intro { padding: 30rpx; }
+.intro-title { font-size: 36rpx; font-weight: 700; }
+.title-input { margin-top: 22rpx; height: 80rpx; padding: 0 24rpx; border-radius: 16rpx; background: #fff9f0; }
+.intro-tip { margin-top: 14rpx; color: #9a8b7e; font-size: 24rpx; }
+.menu-list { margin-top: 26rpx; }
+.menu-item { position: relative; margin-bottom: 18rpx; }
+.menu-item recipe-card { display: block; margin-right: 100rpx; }
+.remove { position: absolute; right: 10rpx; top: 50%; transform: translateY(-50%); color: #ff6b6b; font-size: 25rpx; padding: 24rpx 10rpx; }
+.actions { margin-top: 32rpx; }
+.actions .btn { margin-bottom: 20rpx; }
+.ready { text-align: center; color: #63b889; font-size: 24rpx; }
+.empty .btn { margin-top: 32rpx; }

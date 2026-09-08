@@ -7,6 +7,8 @@
     "pages/search/search",
     "pages/detail/detail",
     "pages/shopping-list/shopping-list",
+    "pages/menu-builder/menu-builder",
+    "pages/shared-menu/shared-menu",
     "pages/tip-detail/tip-detail"
   ],
   "window": {

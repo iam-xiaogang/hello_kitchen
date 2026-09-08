@@ -105,6 +105,19 @@ const service = {
     return data.recipe || null;
   },
 
+  /** 创建跨设备分享菜单（必须启用云开发） */
+  async createSharedMenu(recipeIds, title) {
+    if (!isCloud()) throw new Error('请先配置云开发环境');
+    return callCloud('createSharedMenu', { recipeIds, title });
+  },
+
+  /** 通过不可猜测的分享令牌读取菜单 */
+  async getSharedMenu(token) {
+    if (!isCloud()) throw new Error('请先配置云开发环境');
+    const data = await callCloud('getSharedMenu', { token });
+    return data.menu || null;
+  },
+
   /** 由 id 拿轻量信息（收藏页/历史页渲染用，始终走本地索引） */
   getLightById(id) {
     return INDEX.find((r) => r.id === id) || null;

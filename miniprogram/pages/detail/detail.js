@@ -14,6 +14,7 @@ Page({
     steps: [],
     currentStep: 0,
     related: [],
+    inMenu: false,
   },
 
   onLoad(options) {
@@ -21,6 +22,10 @@ Page({
     this.setData({ id });
     if (id) store.addHistory(id);
     this.init(id);
+  },
+
+  onShow() {
+    if (this.data.id) this.setData({ inMenu: store.isInMenu(this.data.id) });
   },
 
   async init(id) {
@@ -38,6 +43,7 @@ Page({
       ingredients,
       steps: recipe.steps || [],
       favorite: store.isFavorite(id),
+      inMenu: store.isInMenu(id),
       related,
     });
     wx.setNavigationBarTitle({ title: recipe.name });
@@ -66,6 +72,16 @@ Page({
     const list = util.addIngredientsToShoppingList(store.getShoppingList(), this.data.ingredients);
     store.setShoppingList(list);
     wx.showToast({ title: '已加入购物清单 🛒', icon: 'none' });
+  },
+
+  onToggleMenu() {
+    const added = store.toggleMenuItem(this.data.id);
+    this.setData({ inMenu: added });
+    wx.showToast({ title: added ? '已加入点菜篮 🍽️' : '已移出点菜篮', icon: 'none' });
+  },
+
+  onOpenMenu() {
+    wx.navigateTo({ url: '/pages/menu-builder/menu-builder' });
   },
 
   onStepChange(e) {

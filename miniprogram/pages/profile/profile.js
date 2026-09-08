@@ -35,7 +35,7 @@ Page({
       prefs,
       history,
       totalRecipes: dataService.getIndex().length,
-      dataSource: dataService.isCloud() ? '云开发数据库' : 'How to Cook',
+      dataSource: dataService.isCloud() ? 'howtocook' : 'How to Cook',
     });
   },
 

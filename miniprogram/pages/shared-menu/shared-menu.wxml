@@ -1,0 +1,22 @@
+<view class="page">
+  <view class="loading" wx:if="{{loading}}">菜单端上来啦…</view>
+
+  <block wx:elif="{{menu}}">
+    <view class="share-head card">
+      <view class="love">💌</view>
+      <view class="title">{{menu.title}}</view>
+      <view class="subtitle">TA 想和你一起吃这 {{menu.recipes.length}} 道菜</view>
+    </view>
+    <view class="menu-list">
+      <view class="menu-item" wx:for="{{menu.recipes}}" wx:key="id">
+        <recipe-card recipe="{{item}}" type="row" showFavorite="{{false}}" />
+      </view>
+    </view>
+    <button class="btn btn-primary home-btn" bindtap="onGoHome">我也去选菜</button>
+  </block>
+
+  <view class="empty" wx:else>
+    <mascot emoji="🥺" text="{{error || '这份菜单找不到了'}}" size="140" />
+    <button class="btn btn-primary" bindtap="onGoHome">返回首页</button>
+  </view>
+</view>

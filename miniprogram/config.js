@@ -9,6 +9,6 @@
  * 正式发布建议把图片压缩后传到自己的 CDN / 云存储，再改这里的前缀即可。
  */
 module.exports = {
-  cloudEnv: '',
+  cloudEnv: 'cloud1-d4gcgr6w727b5dbc5',
   imageBaseUrl: 'https://raw.githubusercontent.com/Anduin2017/HowToCook/master/',
 };

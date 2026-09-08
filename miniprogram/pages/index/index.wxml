@@ -9,6 +9,7 @@
       <text class="icon">🔍</text>
       <text>搜菜名 / 冰箱里的食材</text>
     </view>
+    <view class="menu-entry" bindtap="onOpenMenu">🍽️ 我的点菜篮</view>
   </view>
 
   <!-- 今天吃什么 -->

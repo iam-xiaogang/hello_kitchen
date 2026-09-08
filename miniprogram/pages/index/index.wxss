@@ -138,3 +138,10 @@
   display: flex;
   gap: 20rpx;
 }
+.menu-entry {
+  margin-top: 18rpx;
+  text-align: right;
+  color: #ff7a5c;
+  font-size: 26rpx;
+  font-weight: 600;
+}
