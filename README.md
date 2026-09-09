@@ -83,6 +83,18 @@ cd tools && npm install
 npm run parse
 ```
 
+### 生成小程序优化图片
+
+源图片同步完成后，可批量生成卡片缩略图和详情封面：
+
+```bash
+cd tools
+npm install
+npm run optimize-images
+```
+
+输出位于 `tools/out/images/thumb/` 和 `tools/out/images/detail/`。将两个目录分别上传到云存储或 CDN 后，在 `miniprogram/config.js` 中填写 `imageThumbBaseUrl` 和 `imageDetailBaseUrl`。未填写时会自动使用原始图片地址。
+
 脚本会遍历 `howtocook/dishes/`，把每道菜的 markdown 解析为：
 
 ```jsonc

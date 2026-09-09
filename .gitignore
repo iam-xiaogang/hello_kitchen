@@ -1,6 +1,7 @@
 # 依赖
 node_modules/
 tools/.npm-cache/
+tools/out/images/
 
 # HowToCook 源仓库（需要时重新克隆）
 howtocook/

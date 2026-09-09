@@ -42,7 +42,7 @@
   <view class="result-pop" catchtap="noop">
     <view class="result-title">就决定吃它啦！</view>
     <view class="result-recipe">
-      <image wx:if="{{resultImageUrl}}" class="result-img" src="{{resultImageUrl}}" mode="aspectFill" />
+      <image wx:if="{{resultImageUrl}}" class="result-img" src="{{resultImageUrl}}" mode="aspectFill" binderror="onResultImgError" />
       <view wx:else class="result-img result-ph">{{resultRecipe.emoji || '🍽️'}}</view>
       <view class="result-name">{{resultRecipe.name}}</view>
       <view class="result-meta">{{resultRecipe.category}} · 难度 {{resultRecipe.difficulty}} · {{resultRecipe.time || '时长未知'}}</view>

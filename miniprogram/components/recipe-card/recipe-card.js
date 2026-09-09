@@ -9,10 +9,19 @@ Component({
   },
   data: {
     imageUrl: '',
+    imageCandidates: [],
+    imageCandidateIndex: 0,
+    imageLoaded: false,
   },
   observers: {
     recipe(recipe) {
-      this.setData({ imageUrl: util.resolveImage(recipe && recipe.image) });
+      const imageCandidates = util.resolveRecipeImageCandidates(recipe, 'thumb');
+      this.setData({
+        imageUrl: imageCandidates[0] || '',
+        imageCandidates,
+        imageCandidateIndex: 0,
+        imageLoaded: false,
+      });
     },
   },
   methods: {
@@ -27,7 +36,16 @@ Component({
       });
     },
     onImgError() {
-      this.setData({ imageUrl: '' });
+      const nextIndex = this.data.imageCandidateIndex + 1;
+      const nextUrl = this.data.imageCandidates[nextIndex];
+      if (nextUrl) {
+        this.setData({ imageUrl: nextUrl, imageCandidateIndex: nextIndex, imageLoaded: false });
+        return;
+      }
+      this.setData({ imageUrl: '', imageLoaded: false });
+    },
+    onImgLoad() {
+      this.setData({ imageLoaded: true });
     },
   },
 });

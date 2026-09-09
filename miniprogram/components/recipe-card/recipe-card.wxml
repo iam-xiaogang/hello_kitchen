@@ -1,16 +1,18 @@
 <view class="rc rc-{{type}}" bindtap="onTap" hover-class="rc-hover">
   <view class="cover" style="background: {{recipe.light || '#F0EAE2'}}">
+    <view class="cover-ph" wx:if="{{!imageLoaded}}">
+      <text class="ph-emoji">{{recipe.emoji || '🍽️'}}</text>
+      <view class="image-loading" wx:if="{{imageUrl}}"></view>
+    </view>
     <image
       wx:if="{{imageUrl}}"
-      class="cover-img"
+      class="cover-img {{imageLoaded ? 'loaded' : ''}}"
       src="{{imageUrl}}"
       mode="aspectFill"
       lazy-load="{{true}}"
+      bindload="onImgLoad"
       binderror="onImgError"
     />
-    <view wx:else class="cover-ph">
-      <text class="ph-emoji">{{recipe.emoji || '🍽️'}}</text>
-    </view>
     <view class="cat">{{recipe.category}}</view>
   </view>
   <view class="body">

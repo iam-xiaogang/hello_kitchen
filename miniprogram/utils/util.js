@@ -4,10 +4,41 @@
 const config = require('../config');
 
 /** 由数据里的相对图片路径拼出完整图片 URL（逐段 URL 编码，保留 "/"） */
-function resolveImage(image) {
+function resolveImage(image, baseUrl) {
   if (!image) return '';
+  if (/^(?:https?:|cloud:|wxfile:|data:)/.test(image)) return image;
+  const base = baseUrl === undefined ? config.imageBaseUrl : baseUrl || '';
+  // cloud fileID 中的对象路径保持原样；HTTPS 地址则逐段编码中文和空格。
+  if (String(base).startsWith('cloud://')) return base + String(image);
   const encoded = String(image).split('/').map((s) => encodeURIComponent(s)).join('/');
-  return (config.imageBaseUrl || '') + encoded;
+  return base + encoded;
+}
+
+/** 原图路径转换为优化后的 WebP 路径，目录结构保持不变。 */
+function optimizedImagePath(image) {
+  return String(image || '').replace(/\.(?:jpe?g|png|gif|webp)$/i, '.webp');
+}
+
+/** 按使用场景返回图片地址；未配置优化图源时透明回退到原图。 */
+function resolveRecipeImage(recipe, variant = 'detail') {
+  if (!recipe || !recipe.image) return '';
+  const optimizedBase = variant === 'thumb' ? config.imageThumbBaseUrl : config.imageDetailBaseUrl;
+  if (optimizedBase) return resolveImage(optimizedImagePath(recipe.image), optimizedBase);
+  return resolveImage(recipe.image);
+}
+
+/** 缩略图 → 优化详情图 → 原图，自动去掉未配置或重复的地址。 */
+function resolveRecipeImageCandidates(recipe, variant = 'thumb') {
+  if (!recipe || !recipe.image) return [];
+  const candidates = [];
+  if (variant === 'thumb' && config.imageThumbBaseUrl) {
+    candidates.push(resolveImage(optimizedImagePath(recipe.image), config.imageThumbBaseUrl));
+  }
+  if (config.imageDetailBaseUrl) {
+    candidates.push(resolveImage(optimizedImagePath(recipe.image), config.imageDetailBaseUrl));
+  }
+  candidates.push(resolveImage(recipe.image));
+  return [...new Set(candidates.filter(Boolean))];
 }
 
 /** 格式化时间估算，如 "1.5小时" → "1小时30分"（或保留原样） */
@@ -164,4 +195,6 @@ module.exports = {
   sleep,
   addIngredientsToShoppingList,
   resolveImage,
+  resolveRecipeImage,
+  resolveRecipeImageCandidates,
 };

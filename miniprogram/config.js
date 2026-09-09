@@ -11,4 +11,7 @@
 module.exports = {
   cloudEnv: 'cloud1-d4gcgr6w727b5dbc5',
   imageBaseUrl: 'https://raw.githubusercontent.com/Anduin2017/HowToCook/master/',
+  // 生成并上传压缩图后填写。留空时自动继续使用上面的原图地址。
+  imageThumbBaseUrl: 'cloud://cloud1-d4gcgr6w727b5dbc5.636c-cloud1-d4gcgr6w727b5dbc5-1305758727/recipe-images/thumb/',
+  imageDetailBaseUrl: 'cloud://cloud1-d4gcgr6w727b5dbc5.636c-cloud1-d4gcgr6w727b5dbc5-1305758727/recipe-images/detail/',
 };

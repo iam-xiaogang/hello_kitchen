@@ -11,6 +11,8 @@ Page({
     favorite: false,
     prettyTime: '',
     imageUrl: '',
+    imageCandidates: [],
+    imageCandidateIndex: 0,
     ingredients: [],
     allChecked: false,
     steps: [],
@@ -38,10 +40,13 @@ Page({
       if (!recipe) throw new Error('菜谱不存在');
       const ingredients = (recipe.ingredients || []).map((i) => ({ ...i, checked: false }));
       const related = await dataService.getRelated(id, recipe.categoryKey, 8);
+      const imageCandidates = util.resolveRecipeImageCandidates(recipe, 'detail');
       this.setData({
         recipe,
         prettyTime: util.prettyTime(recipe.time),
-        imageUrl: util.resolveImage(recipe.image),
+        imageUrl: imageCandidates[0] || '',
+        imageCandidates,
+        imageCandidateIndex: 0,
         ingredients,
         steps: recipe.steps || [],
         favorite: store.isFavorite(id),
@@ -96,7 +101,12 @@ Page({
   },
 
   onImgError() {
-    this.setData({ imageUrl: '' });
+    const nextIndex = this.data.imageCandidateIndex + 1;
+    const nextUrl = this.data.imageCandidates[nextIndex];
+    this.setData({
+      imageUrl: nextUrl || '',
+      imageCandidateIndex: nextUrl ? nextIndex : this.data.imageCandidateIndex,
+    });
   },
 
   onRetry() {

@@ -82,7 +82,10 @@
   top: 0;
   width: 100%;
   height: 100%;
+  opacity: 0;
+  transition: opacity 0.28s ease;
 }
+.cover-img.loaded { opacity: 1; }
 .cover-ph {
   position: absolute;
   left: 0;
@@ -98,6 +101,30 @@
 .ph-emoji {
   font-size: 80rpx;
   line-height: 1;
+}
+.image-loading {
+  position: absolute;
+  left: 50%;
+  bottom: 18rpx;
+  width: 44rpx;
+  height: 6rpx;
+  margin-left: -22rpx;
+  overflow: hidden;
+  border-radius: 999rpx;
+  background: rgba(255, 255, 255, 0.55);
+}
+.image-loading::after {
+  content: '';
+  display: block;
+  width: 50%;
+  height: 100%;
+  border-radius: inherit;
+  background: #ff9a8b;
+  animation: image-loading 1s ease-in-out infinite;
+}
+@keyframes image-loading {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(200%); }
 }
 .rc-row .ph-emoji {
   font-size: 56rpx;

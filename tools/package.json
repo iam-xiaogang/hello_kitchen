@@ -5,9 +5,11 @@
   "type": "module",
   "description": "HowToCook markdown → 结构化 JSON 构建脚本",
   "scripts": {
-    "parse": "node parse.mjs"
+    "parse": "node parse.mjs",
+    "optimize-images": "node optimize-images.mjs"
   },
   "dependencies": {
-    "pinyin-pro": "^3.25.0"
+    "pinyin-pro": "^3.25.0",
+    "sharp": "^0.34.3"
   }
 }

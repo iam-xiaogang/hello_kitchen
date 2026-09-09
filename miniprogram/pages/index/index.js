@@ -12,6 +12,7 @@ Page({
     rollRecipe: null,
     resultRecipe: null,
     resultImageUrl: '',
+    resultFallbackImageUrl: '',
     showResult: false,
   },
 
@@ -80,16 +81,25 @@ Page({
 
   async finishRoll() {
     const recipe = (await dataService.getRandom()) || util.randomPick(dataService.getIndex());
+    const imageCandidates = util.resolveRecipeImageCandidates(recipe, 'detail');
     this.setData({
       rolling: false,
       resultRecipe: recipe,
-      resultImageUrl: util.resolveImage(recipe.image),
+      resultImageUrl: imageCandidates[0] || '',
+      resultFallbackImageUrl: imageCandidates[1] || '',
       showResult: true,
     });
   },
 
   onCloseResult() {
     this.setData({ showResult: false });
+  },
+
+  onResultImgError() {
+    this.setData({
+      resultImageUrl: this.data.resultFallbackImageUrl,
+      resultFallbackImageUrl: '',
+    });
   },
 
   noop() {},
