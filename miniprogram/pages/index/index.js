@@ -28,7 +28,8 @@ Page({
   },
 
   init() {
-    const index = dataService.getIndex();
+    // “猜你喜欢”只从确实配置了封面图的菜谱中推荐，避免出现纯色占位卡片。
+    const index = dataService.getIndex().filter((r) => r.hasImage && r.image);
     const prefs = store.getPrefs();
     const isQuick = (r) => {
       const m = String(r.time || '').match(/(\d+(?:\.\d+)?)\s*分钟/);
